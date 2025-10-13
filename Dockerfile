@@ -1,8 +1,17 @@
-# Use a Python 3.9.6 Alpine base image
-FROM python:3.9.6-alpine3.14
+# Use Python base image
+FROM python:3.10
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
+
+# Copy project files
+COPY . /app
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Start the Telegram bot directly
+CMD ["python3", "main.py"]
 
 # Copy all files from the current directory to the container's /app directory
 COPY . .
